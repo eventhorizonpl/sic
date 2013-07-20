@@ -1,0 +1,36 @@
+function server_menu()
+{
+    CONFIG=$1
+    I=1
+    for FILE in `find config/ -type f`
+    do
+	echo "$I) $FILE"
+	let "I += 1"
+    done
+    read N
+    I=1
+    for FILE in `find config/ -type f`
+    do
+	if [ $I == $N ]
+	then
+	    eval $CONFIG="'$FILE'"
+	fi
+	let "I += 1"
+    done
+}
+
+function show_message()
+{
+    echo -en "\n"$1" "
+}
+
+function show_result()
+{
+    if [ $1 == "0" ]
+    then
+	echo -n "done"
+    elif [ $1 == "1" ]
+    then
+	echo -n "failed"
+    fi
+}

@@ -1,0 +1,3 @@
+.include /usr/lib/systemd/system/postgresql.service
+[Service]
+Environment=PGDATA=/home/data/pgsql/data

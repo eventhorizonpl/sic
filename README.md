@@ -1,0 +1,4 @@
+sic
+===
+
+server install/configuration

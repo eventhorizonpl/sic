@@ -33,6 +33,14 @@ function configure_package()
     cp -R /var/lib/mysql/ /home/data/ > /dev/null 2>&1
     show_result $?
 
+    show_message "\tChanging context /home/data/mysql..."
+    semanage fcontext -a -t mysqld_db_t '/home/data/mysql(/.*)?' > /dev/null 2>&1
+    show_result $?
+
+    show_message "\tRestoring context /home/data/mysql..."
+    restorecon -R -v /home/data/mysql > /dev/null 2>&1
+    show_result $?
+
     show_message "\tChanging ownership /home/data/mysql..."
     chown -R mysql:mysql /home/data/mysql/ > /dev/null 2>&1
     show_result $?

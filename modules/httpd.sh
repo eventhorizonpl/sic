@@ -11,7 +11,7 @@ function configure_package()
     show_result $?
 
     show_message "\tChanging context /home/data/..."
-    semanage fcontext -a -t var_t '/home/data' > /dev/null 2>&1
+    semanage fcontext -a -t var_t '/home/data(/.*)?' > /dev/null 2>&1
     show_result $?
 
     show_message "\tRestoring context /home/data/..."
@@ -29,21 +29,21 @@ function configure_package()
     cp -R /var/www/ /home/data/ > /dev/null 2>&1
     show_result $?
 
-#    show_message "\tChanging context /home/data/www/cgi-bin..."
-#    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin/' > /dev/null 2>&1
-#    show_result $?
+    show_message "\tChanging context /home/data/www..."
+    semanage fcontext -a -t httpd_sys_content_t '/home/data/www(/.*)?' > /dev/null 2>&1
+    show_result $?
 
-#    show_message "\tRestoring context /home/data/www/cgi-bin..."
-#    restorecon -R -v /home/data/www/cgi-bin > /dev/null 2>&1
-#    show_result $?
+    show_message "\tChanging context /home/data/www/cgi-bin..."
+    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin(/.*)?' > /dev/null 2>&1
+    show_result $?
 
-#    show_message "\tChanging context /home/data/www/html..."
-#    semanage fcontext -a -t httpd_sys_content_t '/home/data/www/html' > /dev/null 2>&1
-#    show_result $?
+    show_message "\tChanging context /home/data/www/html..."
+    semanage fcontext -a -t httpd_sys_content_t '/home/data/www/html(/.*)?' > /dev/null 2>&1
+    show_result $?
 
-#    show_message "\tRestoring context /home/data/www/html..."
-#    restorecon -R -v /home/data/www/html > /dev/null 2>&1
-#    show_result $?
+    show_message "\tRestoring context /home/data/www..."
+    restorecon -R -v /home/data/www > /dev/null 2>&1
+    show_result $?
 
     show_message "\tPathes in config file..."
     sed -i "s/\/var\/www/\/home\/data\/www/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1

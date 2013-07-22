@@ -11,7 +11,7 @@ function configure_package()
     show_result $?
 
     show_message "\tsysconfig..."
-    sed -i "s@^\(SELINUX=\).*@\1disabled@" /etc/sysconfig/selinux > /dev/null 2>&1
+    sed -i "s@^\(SELINUX=\).*@\1disabled@" /etc/selinux/config > /dev/null 2>&1
     show_result $?
 }
 

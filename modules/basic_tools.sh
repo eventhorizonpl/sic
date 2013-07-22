@@ -5,7 +5,7 @@ source ./lib
 function install_package()
 {
     show_message "Installing basic tools..."
-    yum install --assumeyes bzip2 cmake ecryptfs-utils gcc gcc-c++ git make mc redhat-rpm-config subversion tar unzip vim wget > /dev/null 2>&1
+    yum install --assumeyes acl bzip2 cmake ecryptfs-utils gcc gcc-c++ git make mc redhat-rpm-config subversion tar unzip vim wget > /dev/null 2>&1
     show_result $?
 }
 

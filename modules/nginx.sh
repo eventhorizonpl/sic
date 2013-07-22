@@ -6,10 +6,6 @@ function configure_package()
 {
     show_message "Configuring nginx..."
 
-    show_message "\tCreating /home/data..."
-    mkdir -p /home/data > /dev/null 2>&1
-    show_result $?
-
     show_message "\tPathes in config file..."
     sed -i "s/listen       80/listen       81/g" /etc/nginx/nginx.conf > /dev/null 2>&1
     show_result $?

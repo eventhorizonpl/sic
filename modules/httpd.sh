@@ -49,6 +49,10 @@ function configure_package()
     sed -i "s/\/var\/www/\/home\/data\/www/g" /etc/httpd/conf/httpd.conf > /dev/null 2>&1
     show_result $?
 
+    show_message "\tCopying config file..."
+    cp etc/httpd/conf.d/virtual.conf /etc/httpd/conf.d/ > /dev/null 2>&1
+    show_result $?
+
     show_message "\tRestarting httpd..."
     systemctl restart httpd.service > /dev/null 2>&1
     show_result $?

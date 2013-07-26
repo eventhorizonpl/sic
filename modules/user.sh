@@ -6,6 +6,14 @@ function configure_package()
 {
     show_message "Configuring user..."
 
+    show_message "\tCreating staff group..."
+    groupadd staff > /dev/null 2>&1
+    show_result $?
+
+    show_message "\tAdding michal to staff..."
+    usermod -a -G staff michal > /dev/null 2>&1
+    show_result $?
+
     show_message "\tAdding michal to wheel..."
     usermod -a -G wheel michal > /dev/null 2>&1
     show_result $?

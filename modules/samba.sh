@@ -6,6 +6,13 @@ function configure_package()
 {
     show_message "Configuring samba..."
 
+    show_message "\tCopying config file..."
+    cp etc/samba/smb.conf /etc/samba/smb.conf > /dev/null 2>&1
+    show_result $?
+
+    show_message "\tAdding new user..."
+    smbpasswd -a michal
+
     show_message "\tRestarting smb..."
     systemctl restart smb.service > /dev/null 2>&1
     show_result $?

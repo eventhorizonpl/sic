@@ -30,6 +30,10 @@ function configure_package()
     systemctl restart postgresql.service > /dev/null 2>&1
     show_result $?
 
+    show_message "\tsmb.service..."
+    systemctl restart smb.service > /dev/null 2>&1
+    show_result $?
+
     show_message "\tvarnish.service..."
     systemctl restart varnish.service > /dev/null 2>&1
     show_result $?

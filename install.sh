@@ -20,6 +20,8 @@ yes | cp etc/hosts /etc/
 echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
 show_result $?
 
+sh modules/user.sh "configure"
+
 if [ $MODULE_DISABLE_SELINUX == "yes" ]
 then
     sh modules/disable_selinux.sh "configure" "remove"
@@ -65,6 +67,11 @@ then
     sh modules/php.sh "install"
 fi
 
+if [ $MODULE_SAMBA == "yes" ]
+then
+    sh modules/samba.sh "install" "configure"
+fi
+
 if [ $MODULE_VARNISH == "yes" ]
 then
     sh modules/varnish.sh "install" "configure"
@@ -79,7 +86,5 @@ if [ $MODULE_RESTART_SERVICES == "yes" ]
 then
     sh modules/restart_services.sh "configure"
 fi
-
-sh modules/user.sh "configure"
 
 echo -e "\nAll done"

@@ -11,7 +11,7 @@ function configure_package()
     show_result $?
 
     show_message "\tCreating /home/data..."
-    mkdir -p /home/data > >> /tmp/install.log 2>&1
+    mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
     if [ -e /home/data/mongodb/ ]

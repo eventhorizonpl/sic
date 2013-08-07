@@ -22,6 +22,7 @@ function server_menu()
 function show_message()
 {
     echo -en "\n"$1" "
+    echo -en "\n"$1" " >> /tmp/install.log
 }
 
 function show_result()
@@ -29,8 +30,10 @@ function show_result()
     if [ $1 == "0" ]
     then
 	echo -n "done"
+	echo -n "done" >> /tmp/install.log
     elif [ $1 == "1" ]
     then
 	echo -n "failed"
+	echo -n "failed" >> /tmp/install.log
     fi
 }

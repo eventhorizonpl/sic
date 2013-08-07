@@ -7,18 +7,18 @@ function configure_package()
     show_message "Configuring varnish..."
 
     show_message "\tRestarting varnish..."
-    systemctl restart varnish.service > /dev/null 2>&1
+    systemctl restart varnish.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tEnabling varnish..."
-    systemctl enable varnish.service > /dev/null 2>&1
+    systemctl enable varnish.service >> /tmp/install.log 2>&1
     show_result $?
 }
 
 function install_package()
 {
     show_message "Installing varnish..."
-    yum install --assumeyes varnish varnish-libs > /dev/null 2>&1
+    yum install --assumeyes varnish varnish-libs >> /tmp/install.log 2>&1
     show_result $?
 }
 

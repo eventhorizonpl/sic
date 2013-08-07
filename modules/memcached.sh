@@ -5,18 +5,18 @@ source ./lib
 function configure_package()
 {
     show_message "\tRestarting memcached..."
-    systemctl restart memcached.service > /dev/null 2>&1
+    systemctl restart memcached.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tEnabling memcached..."
-    systemctl enable memcached.service > /dev/null 2>&1
+    systemctl enable memcached.service >> /tmp/install.log 2>&1
     show_result $?
 }
 
 function install_package()
 {
     show_message "Installing memcached..."
-    yum install --assumeyes memcached > /dev/null 2>&1
+    yum install --assumeyes memcached >> /tmp/install.log 2>&1
     show_result $?
 }
 

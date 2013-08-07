@@ -7,18 +7,18 @@ function configure_package()
     show_message "Disabling SELinux..."
 
     show_message "\tsetenforce..."
-    setenforce 0 > /dev/null 2>&1
+    setenforce 0 >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tsysconfig..."
-    sed -i "s@^\(SELINUX=\).*@\1disabled@" /etc/selinux/config > /dev/null 2>&1
+    sed -i "s@^\(SELINUX=\).*@\1disabled@" /etc/selinux/config >> /tmp/install.log 2>&1
     show_result $?
 }
 
 function remove_package()
 {
     show_message "Removing SELinux..."
-#    yum remove --assumeyes policycoreutils selinux-policy-targeted > /dev/null 2>&1
+#    yum remove --assumeyes policycoreutils selinux-policy-targeted >> /tmp/install.log 2>&1
     show_result $?
 }
 

@@ -11,6 +11,8 @@ fi
 
 source ./$CONFIG
 
+echo > /tmp/install.log
+
 show_message "Setting hostname..."
 echo $HOSTNAME > /etc/hostname
 show_result $?

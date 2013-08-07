@@ -7,22 +7,22 @@ function configure_package()
     show_message "Configuring nginx..."
 
     show_message "\tPathes in config file..."
-    sed -i "s/listen       80/listen       81/g" /etc/nginx/nginx.conf > /dev/null 2>&1
+    sed -i "s/listen       80/listen       81/g" /etc/nginx/nginx.conf >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tRestarting nginx..."
-    systemctl restart nginx.service > /dev/null 2>&1
+    systemctl restart nginx.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tEnabling nginx..."
-    systemctl enable nginx.service > /dev/null 2>&1
+    systemctl enable nginx.service >> /tmp/install.log 2>&1
     show_result $?
 }
 
 function install_package()
 {
     show_message "Installing nginx..."
-    yum install --assumeyes nginx > /dev/null 2>&1
+    yum install --assumeyes nginx >> /tmp/install.log 2>&1
     show_result $?
 }
 

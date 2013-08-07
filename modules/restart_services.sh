@@ -7,35 +7,35 @@ function configure_package()
     show_message "Restarting services..."
 
     show_message "\thttpd.service ..."
-    systemctl restart httpd.service  > /dev/null 2>&1
+    systemctl restart httpd.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tmemcached.service..."
-    systemctl restart memcached.service > /dev/null 2>&1
+    systemctl restart memcached.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tmongod.service..."
-    systemctl restart mongod.service > /dev/null 2>&1
+    systemctl restart mongod.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tmysqld.service..."
-    systemctl restart > /dev/null 2>&1
+    systemctl restart >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tnginx.service..."
-    systemctl restart nginx.service > /dev/null 2>&1
+    systemctl restart nginx.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tpostgresql.service..."
-    systemctl restart postgresql.service > /dev/null 2>&1
+    systemctl restart postgresql.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tsmb.service..."
-    systemctl restart smb.service > /dev/null 2>&1
+    systemctl restart smb.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tvarnish.service..."
-    systemctl restart varnish.service > /dev/null 2>&1
+    systemctl restart varnish.service >> /tmp/install.log 2>&1
     show_result $?
 }
 

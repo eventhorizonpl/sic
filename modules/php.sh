@@ -2,6 +2,23 @@
 
 source ./lib
 
+function configure_package()
+{
+    show_message "Configuring php..."
+
+    show_message "\tTimezone..."
+    sed -i "s/;date.timezone =/date.timezone = \"Europe\/Warsaw\"/g" /etc/php.ini >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tMemory limit..."
+    sed -i "s/memory_limit = 128M/memory_limit = 1024M/g" /etc/php.ini >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tMax execution time..."
+    sed -i "s/max_execution_time = 30/max_execution_time = 120/g" /etc/php.ini >> /tmp/install.log 2>&1
+    show_result $?
+}
+
 function install_package()
 {
     show_message "Installing php..."
@@ -14,6 +31,9 @@ do
     if [ $1 == "install" ]
     then
 	install_package
+    elif [ $1 == "configure" ]
+    then
+	configure_package
     fi
     shift
 done

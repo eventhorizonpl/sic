@@ -66,7 +66,7 @@ fi
 
 if [ $MODULE_PHP == "yes" ]
 then
-    sh modules/php.sh "install"
+    sh modules/php.sh "install" "configure"
 fi
 
 if [ $MODULE_SAMBA == "yes" ]

@@ -30,6 +30,10 @@ function configure_package()
     chmod 755 /home/michal/bin/* >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tCreating backup..."
+    mkdir -p /home/michal/backup >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tCreating projekty..."
     mkdir -p /home/michal/projekty >> /tmp/install.log 2>&1
     show_result $?

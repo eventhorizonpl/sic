@@ -26,6 +26,10 @@ function configure_package()
     cp bin/* /home/michal/bin >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tCopying .gitconfig..."
+    cp etc/.gitconfig /home/michal/ >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tChanging mode..."
     chmod 755 /home/michal/bin/* >> /tmp/install.log 2>&1
     show_result $?

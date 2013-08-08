@@ -5,8 +5,8 @@ source ./lib
 function install_package()
 {
     show_message "Installing basic tools..."
-    yum install --assumeyes acl bzip2 cmake deltarpm ecryptfs-utils \
-	gcc gcc-c++ git libsqlite3x libsqlite3x-devel make mc \
+    yum install --assumeyes acl bootchart bzip2 cmake deltarpm ecryptfs-utils \
+	gcc gcc-c++ git libsqlite3x libsqlite3x-devel lm_sensors make mc \
 	net-tools nodejs npm pcre-devel policycoreutils-python redhat-rpm-config \
 	screen subversion tar unixODBC-devel unzip vim wget >> /tmp/install.log 2>&1
     show_result $?

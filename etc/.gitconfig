@@ -1,0 +1,6 @@
+[user]
+	name = Michal Piotrowski
+	email = michal@eventhorizon.pl
+[color]
+	pager = true
+	ui = auto

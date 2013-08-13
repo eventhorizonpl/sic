@@ -1,1 +1,7 @@
 skrypt do backupu baz i konfiguracji
+
+yum groupinstall "Basic Desktop"
+yum groupinstall "Środowisko Xfce"
+
+ln -s /lib/systemd/system/graphical.target /etc/systemd/system/default2.target
+mv /etc/systemd/system/default2.target /etc/systemd/system/default.target

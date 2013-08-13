@@ -1,5 +1,3 @@
-skrypt do backupu baz i konfiguracji
-
 yum groupinstall "Basic Desktop"
 yum groupinstall "Środowisko Xfce"
 

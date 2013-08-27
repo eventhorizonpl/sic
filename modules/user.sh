@@ -30,6 +30,14 @@ function configure_package()
     cp etc/.gitconfig /home/michal/ >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tCopying .my.cnf..."
+    cp etc/.my.cnf /home/michal/ >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tCopying .pgpass..."
+    cp etc/.pgpass /home/michal/ >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tChanging mode..."
     chmod 755 /home/michal/bin/* >> /tmp/install.log 2>&1
     show_result $?

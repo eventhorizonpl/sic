@@ -17,3 +17,7 @@ show_result $?
 show_message "Linking targets part 2..."
 mv -f /etc/systemd/system/default2.target /etc/systemd/system/default.target >> /tmp/install.log 2>&1
 show_result $?
+
+show_message "\tCopying config file..."
+cp etc/sysconfig/desktop /etc/sysconfig/ >> /tmp/install.log 2>&1
+show_result $?

@@ -1,3 +1,5 @@
+OS=`cat /etc/os-release | grep ^ID= | cut -d "=" -f 2 | sed 's/"//g'`
+
 function server_menu()
 {
     CONFIG=$1

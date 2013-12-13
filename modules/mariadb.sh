@@ -6,8 +6,14 @@ function configure_package()
 {
     show_message "Configuring mariadb..."
 
-    show_message "\tStopping mysqld..."
-    systemctl stop mysqld.service >> /tmp/install.log 2>&1
+    show_message "\tStopping mariadb..."
+    if [ $OS == "fedora" ]
+    then
+        systemctl stop mysqld.service >> /tmp/install.log 2>&1
+    elif [ $OS == "rhel" ]
+    then
+        systemctl stop mariadb.service >> /tmp/install.log 2>&1
+    fi
     show_result $?
 
     show_message "\tCreating /home/data..."
@@ -53,12 +59,24 @@ function configure_package()
     cp etc/httpd/conf.d/phpMyAdmin.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tRestarting mysqld..."
-    systemctl restart mysqld.service >> /tmp/install.log 2>&1
+    show_message "\tRestarting mariadb..."
+    if [ $OS == "fedora" ]
+    then
+        systemctl restart mysqld.service >> /tmp/install.log 2>&1
+    elif [ $OS == "rhel" ]
+    then
+        systemctl restart mariadb.service >> /tmp/install.log 2>&1
+    fi
     show_result $?
 
-    show_message "\tEnabling mysqld..."
-    systemctl enable mysqld.service >> /tmp/install.log 2>&1
+    show_message "\tEnabling mariadb..."
+    if [ $OS == "fedora" ]
+    then
+        systemctl enable mysqld.service >> /tmp/install.log 2>&1
+    elif [ $OS == "rhel" ]
+    then
+        systemctl enable mariadb.service >> /tmp/install.log 2>&1
+    fi
     show_result $?
 
     show_message "\tCreating user..."

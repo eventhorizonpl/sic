@@ -14,13 +14,13 @@ function configure_package()
     mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging context /home/data/..."
-    semanage fcontext -a -t var_t '/home/data' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/..."
+#    semanage fcontext -a -t var_t '/home/data' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tRestoring context /home/data/..."
-    restorecon -R -v /home/data >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tRestoring context /home/data/..."
+#    restorecon -R -v /home/data >> /tmp/install.log 2>&1
+#    show_result $?
 
     if [ -e /home/data/pgsql/ ]
     then

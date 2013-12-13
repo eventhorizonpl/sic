@@ -20,13 +20,13 @@ function configure_package()
     mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging context /home/data/..."
-    semanage fcontext -a -t var_t '/home/data' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/..."
+#    semanage fcontext -a -t var_t '/home/data' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tRestoring context /home/data/..."
-    restorecon -R -v /home/data >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tRestoring context /home/data/..."
+#    restorecon -R -v /home/data >> /tmp/install.log 2>&1
+#    show_result $?
 
     if [ -e /home/data/pgsql/ ]
     then
@@ -39,13 +39,13 @@ function configure_package()
     cp -R /var/lib/mysql/ /home/data/ >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging context /home/data/mysql..."
-    semanage fcontext -a -t mysqld_db_t '/home/data/mysql(/.*)?' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/mysql..."
+#    semanage fcontext -a -t mysqld_db_t '/home/data/mysql(/.*)?' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tRestoring context /home/data/mysql..."
-    restorecon -R -v /home/data/mysql >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tRestoring context /home/data/mysql..."
+#    restorecon -R -v /home/data/mysql >> /tmp/install.log 2>&1
+#    show_result $?
 
     show_message "\tChanging ownership /home/data/mysql..."
     chown -R mysql:mysql /home/data/mysql/ >> /tmp/install.log 2>&1

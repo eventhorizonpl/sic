@@ -10,13 +10,13 @@ function configure_package()
     mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging context /home/data/..."
-    semanage fcontext -a -t var_t '/home/data(/.*)?' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/..."
+#    semanage fcontext -a -t var_t '/home/data(/.*)?' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tRestoring context /home/data/..."
-    restorecon -R -v /home/data >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tRestoring context /home/data/..."
+#    restorecon -R -v /home/data >> /tmp/install.log 2>&1
+#    show_result $?
 
     if [ -e /home/data/www ]
     then
@@ -29,21 +29,21 @@ function configure_package()
     cp -R /var/www/ /home/data/ >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging context /home/data/www..."
-    semanage fcontext -a -t httpd_sys_content_t '/home/data/www(/.*)?' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/www..."
+#    semanage fcontext -a -t httpd_sys_content_t '/home/data/www(/.*)?' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tChanging context /home/data/www/cgi-bin..."
-    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin(/.*)?' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/www/cgi-bin..."
+#    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin(/.*)?' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tChanging context /home/data/www/html..."
-    semanage fcontext -a -t httpd_sys_content_t '/home/data/www/html(/.*)?' >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tChanging context /home/data/www/html..."
+#    semanage fcontext -a -t httpd_sys_content_t '/home/data/www/html(/.*)?' >> /tmp/install.log 2>&1
+#    show_result $?
 
-    show_message "\tRestoring context /home/data/www..."
-    restorecon -R -v /home/data/www >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "\tRestoring context /home/data/www..."
+#    restorecon -R -v /home/data/www >> /tmp/install.log 2>&1
+#    show_result $?
 
     show_message "\tPathes in config file..."
     sed -i "s/\/var\/www/\/home\/data\/www/g" /etc/httpd/conf/httpd.conf >> /tmp/install.log 2>&1

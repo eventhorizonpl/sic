@@ -19,13 +19,7 @@ function configure_package()
     show_result $?
 
     show_message "\tmariadb.service..."
-    if [ $OS == "fedora" ]
-    then
-        systemctl restart mysqld.service >> /tmp/install.log 2>&1
-    elif [ $OS == "rhel" ]
-    then
-        systemctl restart mariadb.service >> /tmp/install.log 2>&1
-    fi
+    systemctl restart mariadb.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tnginx.service..."

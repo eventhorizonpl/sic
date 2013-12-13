@@ -7,13 +7,7 @@ function configure_package()
     show_message "Configuring mariadb..."
 
     show_message "\tStopping mariadb..."
-    if [ $OS == "fedora" ]
-    then
-        systemctl stop mysqld.service >> /tmp/install.log 2>&1
-    elif [ $OS == "rhel" ]
-    then
-        systemctl stop mariadb.service >> /tmp/install.log 2>&1
-    fi
+    systemctl stop mariadb.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tCreating /home/data..."
@@ -28,7 +22,7 @@ function configure_package()
 #    restorecon -R -v /home/data >> /tmp/install.log 2>&1
 #    show_result $?
 
-    if [ -e /home/data/pgsql/ ]
+    if [ -e /home/data/mysql/ ]
     then
 	show_message "\tRemoving /home/data/mysql..."
 	rm -rf /home/data/mysql/ >> /tmp/install.log 2>&1
@@ -60,23 +54,11 @@ function configure_package()
     show_result $?
 
     show_message "\tRestarting mariadb..."
-    if [ $OS == "fedora" ]
-    then
-        systemctl restart mysqld.service >> /tmp/install.log 2>&1
-    elif [ $OS == "rhel" ]
-    then
-        systemctl restart mariadb.service >> /tmp/install.log 2>&1
-    fi
+    systemctl restart mariadb.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tEnabling mariadb..."
-    if [ $OS == "fedora" ]
-    then
-        systemctl enable mysqld.service >> /tmp/install.log 2>&1
-    elif [ $OS == "rhel" ]
-    then
-        systemctl enable mariadb.service >> /tmp/install.log 2>&1
-    fi
+    systemctl enable mariadb.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tCreating user..."

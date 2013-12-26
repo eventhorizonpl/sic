@@ -59,6 +59,11 @@ then
     sh modules/mongodb.sh "install" "configure"
 fi
 
+if [ $MODULE_POSTFIX == "yes" ]
+then
+    sh modules/postfix.sh "install" "configure"
+fi
+
 if [ $MODULE_POSTGRESQL == "yes" ]
 then
     sh modules/postgresql.sh "install" "configure"

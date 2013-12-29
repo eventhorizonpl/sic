@@ -84,6 +84,11 @@ then
     sh modules/varnish.sh "install" "configure"
 fi
 
+if [ $MODULE_HHVM == "yes" ]
+then
+    sh modules/hhvm.sh "install"
+fi
+
 if [ $MODULE_DISABLE_SERVICES == "yes" ]
 then
     sh modules/disable_services.sh "configure"

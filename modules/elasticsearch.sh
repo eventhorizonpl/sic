@@ -10,6 +10,10 @@ function configure_package()
     /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tInstalling elasticsearch/marvel..."
+    /usr/share/elasticsearch/bin/plugin -install elasticsearch/marvel/latest >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tRestarting elasticsearch..."
     systemctl restart elasticsearch.service >> /tmp/install.log 2>&1
     show_result $?

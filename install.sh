@@ -89,6 +89,11 @@ then
     sh modules/hhvm.sh "install"
 fi
 
+if [ $MODULE_ELASTICSEARCH == "yes" ]
+then
+    sh modules/elasticsearch.sh "install" "configure"
+fi
+
 if [ $MODULE_DISABLE_SERVICES == "yes" ]
 then
     sh modules/disable_services.sh "configure"

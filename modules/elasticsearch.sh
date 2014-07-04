@@ -26,7 +26,7 @@ function configure_package()
 function install_package()
 {
     show_message "Installing elasticsearch..."
-    rpm -ihv https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.10.noarch.rpm >> /tmp/install.log 2>&1
+    rpm -ihv https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.2.1.noarch.rpm >> /tmp/install.log 2>&1
     show_result $?
 }
 

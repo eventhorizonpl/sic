@@ -79,7 +79,7 @@ then
     sh modules/samba.sh "install" "configure"
 fi
 
-if [ $MODULE_VARNISH == "yes" ]
+if [ $MODULE_VARNISH == "yes" ] && [ $OS == "fedora" ]
 then
     sh modules/varnish.sh "install" "configure"
 fi

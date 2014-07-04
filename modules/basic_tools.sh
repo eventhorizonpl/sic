@@ -6,7 +6,7 @@ function install_package()
 {
     if [ $OS == "rhel" ]
     then
-        show_message "\tInstalling EPEL package..."
+        show_message "\tInstalling EPEL release package..."
         rpm -ihv http://ftp.pbone.net/pub/fedora/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm
         show_result $?
     fi

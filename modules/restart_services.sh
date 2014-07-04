@@ -34,9 +34,12 @@ function configure_package()
     systemctl restart smb.service >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tvarnish.service..."
-    systemctl restart varnish.service >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        show_message "\tvarnish.service..."
+        systemctl restart varnish.service >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

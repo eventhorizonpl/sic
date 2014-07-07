@@ -17,6 +17,10 @@ function configure_package()
     show_message "\tMax execution time..."
     sed -i "s/max_execution_time = 30/max_execution_time = 120/g" /etc/php.ini >> /tmp/install.log 2>&1
     show_result $?
+
+    show_message "\tUpload max filesize..."
+    sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 8M/g" /etc/php.ini >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 function install_package()

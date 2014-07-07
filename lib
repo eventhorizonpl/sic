@@ -1,4 +1,10 @@
 OS=`cat /etc/os-release | grep ^ID= | cut -d "=" -f 2 | sed 's/"//g'`
+
+if [ $OS == "centos" ]
+then
+    OS="rhel"
+fi
+
 VERSION=`cat /etc/os-release | grep ^VERSION_ID= | cut -d "=" -f 2 | sed 's/"//g' | cut -d "." -f 1`
 
 function server_menu()

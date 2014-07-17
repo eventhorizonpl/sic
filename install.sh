@@ -39,7 +39,7 @@ then
     sh modules/httpd.sh "install" "configure"
 fi
 
-if [ $MODULE_NGINX == "yes" ] && [ $OS == "fedora" ]
+if [ $MODULE_NGINX == "yes" ]
 then
     sh modules/nginx.sh "install" "configure"
 fi

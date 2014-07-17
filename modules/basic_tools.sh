@@ -18,9 +18,12 @@ function install_package()
 	screen subversion tar tigervnc-server unixODBC-devel unzip vim wget >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "Installing npm tools..."
-    npm install -g less >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        show_message "Installing npm tools..."
+        npm install -g less >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

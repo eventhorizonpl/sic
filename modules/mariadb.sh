@@ -25,20 +25,24 @@ function configure_package()
     cp -R /var/lib/mysql/ /home/data/ >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tChanging ownership /home/data/mysql..."
+    chown -R mysql:mysql /home/data/mysql/ >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tChanging context /home/data/mysql..."
-    semanage fcontext -a -t mysqld_db_t '/home/data/mysql(/.*)?' >> /tmp/install.log 2>&1
+    semanage fcontext -a -t mysqld_db_t "/home/data/mysql(/.*)?" >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tRestoring context /home/data/mysql..."
     restorecon -R -v /home/data/mysql >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tChanging ownership /home/data/mysql..."
-    chown -R mysql:mysql /home/data/mysql/ >> /tmp/install.log 2>&1
+    show_message "\tData dir path in config file..."
+    sed -i "s/datadir=\/var\/lib\/mysql/datadir=\/home\/data\/mysql/g" /etc/my.cnf >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tPathes in config file..."
-    sed -i "s/datadir=\/var\/lib\/mysql/datadir=\/home\/data\/mysql/g" /etc/my.cnf >> /tmp/install.log 2>&1
+    show_message "\tSocket dir path in config file..."
+    sed -i "s/socket=\/var\/lib\/mysql\/mysql.sock/datadir=\/home\/data\/mysql\/mysql.sock/g" /etc/my.cnf >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tCopying config file..."

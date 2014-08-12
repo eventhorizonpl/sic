@@ -24,10 +24,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     elif [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

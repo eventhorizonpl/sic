@@ -16,9 +16,9 @@ function configure_package()
 
     if [ -e /home/data/mongodb/ ]
     then
-	show_message "\tRemoving /home/data/mongodb..."
-	rm -rf /home/data/mongodb >> /tmp/install.log 2>&1
-	show_result $?
+        show_message "\tRemoving /home/data/mongodb..."
+        rm -rf /home/data/mongodb >> /tmp/install.log 2>&1
+        show_result $?
     fi
 
     show_message "\tCreating /home/data/mongodb..."
@@ -65,10 +65,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     elif [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

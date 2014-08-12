@@ -41,10 +41,6 @@ function configure_package()
     cp etc/systemd/system/postgresql.service /etc/systemd/system/ >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tCopying phpPgAdmin config file..."
-    cp etc/httpd/conf.d/phpPgAdmin.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tReloading systemd..."
     systemctl --system daemon-reload >> /tmp/install.log 2>&1
     show_result $?

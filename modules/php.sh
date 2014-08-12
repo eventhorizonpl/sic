@@ -21,6 +21,14 @@ function configure_package()
     show_message "\tUpload max filesize..."
     sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 8M/g" /etc/php.ini >> /tmp/install.log 2>&1
     show_result $?
+
+    show_message "\tCopying phpMyAdmin config file..."
+    cp etc/httpd/conf.d/phpMyAdmin.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tCopying phpPgAdmin config file..."
+    cp etc/httpd/conf.d/phpPgAdmin.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 function install_package()
@@ -33,7 +41,7 @@ function install_package()
     elif [ $OS == "rhel" ]
     then
         show_message "Installing php..."
-        yum install --assumeyes --enablerepo=remi-php55 php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
+        yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
         show_result $?
     fi
 }

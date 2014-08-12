@@ -45,10 +45,6 @@ function configure_package()
     sed -i "s/socket=\/var\/lib\/mysql\/mysql.sock/datadir=\/home\/data\/mysql\/mysql.sock/g" /etc/my.cnf >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tCopying config file..."
-    cp etc/httpd/conf.d/phpMyAdmin.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tEnabling mysql in firewall..."
     firewall-cmd --permanent --zone=public --add-service=mysql >> /tmp/install.log 2>&1
     show_result $?

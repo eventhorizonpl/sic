@@ -29,7 +29,7 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     fi
     shift
 done

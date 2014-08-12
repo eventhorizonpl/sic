@@ -18,10 +18,6 @@ function configure_package()
     systemctl disable avahi-daemon.service >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tfirewalld.service..."
-    systemctl disable firewalld.service >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tremote-fs.target..."
     systemctl disable remote-fs.target >> /tmp/install.log 2>&1
     show_result $?

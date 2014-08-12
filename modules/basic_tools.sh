@@ -14,16 +14,21 @@ function install_package()
     show_message "Installing basic tools..."
     yum install --assumeyes acl bootchart bzip2 cmake cryptsetup deltarpm fedup \
     gcc gcc-c++ git java libsqlite3x libsqlite3x-devel lm_sensors lsof lucene make mc \
-    net-tools nodejs npm patch pcre-devel policycoreutils-python redhat-rpm-config \
+    net-tools nodejs npm ntpdate patch pcre-devel policycoreutils-python redhat-rpm-config \
     screen subversion tar tigervnc-server unixODBC-devel unzip vim wget >> /tmp/install.log 2>&1
     show_result $?
 
-    if [ $OS == "fedora" ]
-    then
-        show_message "Installing npm tools..."
-        npm install -g less >> /tmp/install.log 2>&1
-        show_result $?
-    fi
+    show_message "\tRestarting ntpdate..."
+    systemctl restart ntpdate.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tEnabling ntpdate..."
+    systemctl enable ntpdate.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "Installing npm tools..."
+    npm install -g less >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 while [ $# -ne 0 ]

@@ -6,7 +6,11 @@ function configure_package()
 {
     show_message "Restarting services..."
 
-    show_message "\thttpd.service ..."
+    show_message "\tfirewalld.service..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\thttpd.service..."
     systemctl restart httpd.service >> /tmp/install.log 2>&1
     show_result $?
 
@@ -34,12 +38,9 @@ function configure_package()
     systemctl restart smb.service >> /tmp/install.log 2>&1
     show_result $?
 
-    if [ $OS == "fedora" ]
-    then
-        show_message "\tvarnish.service..."
-        systemctl restart varnish.service >> /tmp/install.log 2>&1
-        show_result $?
-    fi
+    show_message "\tvarnish.service..."
+    systemctl restart varnish.service >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 while [ $# -ne 0 ]

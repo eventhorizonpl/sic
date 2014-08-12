@@ -30,7 +30,7 @@ function configure_package()
     show_result $?
 
     show_message "\tChanging context /home/data/mysql..."
-    semanage fcontext -a -t mysqld_db_t "/home/data/mysql(/.*)?" >> /tmp/install.log 2>&1
+    semanage fcontext -a -t "mysqld_db_t" "/home/data/mysql(/.*)?" >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tRestoring context /home/data/mysql..."

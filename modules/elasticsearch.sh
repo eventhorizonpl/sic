@@ -14,6 +14,14 @@ function configure_package()
     /usr/share/elasticsearch/bin/plugin -install elasticsearch/marvel/latest >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tEnabling elasticsearch in firewall..."
+    firewall-cmd --permanent --zone=public --add-port=9200/tcp >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestarting firewalld..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tRestarting elasticsearch..."
     systemctl restart elasticsearch.service >> /tmp/install.log 2>&1
     show_result $?

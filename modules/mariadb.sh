@@ -72,21 +72,9 @@ function configure_package()
 
 function install_package()
 {
-    if [ $OS == "fedora" ]
-    then
-        show_message "Installing mariadb..."
-        yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
-        show_result $?
-    elif [ $OS == "rhel" ]
-    then
-        show_message "Installing REMI release package..."
-        rpm -ihv http://rpms.famillecollet.com/enterprise/remi-release-7.rpm >> /tmp/install.log 2>&1
-        show_result $?
-
-        show_message "Installing mariadb..."
-        yum install --assumeyes --enablerepo=remi mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
-        show_result $?
-    fi
+    show_message "Installing mariadb..."
+    yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 while [ $# -ne 0 ]

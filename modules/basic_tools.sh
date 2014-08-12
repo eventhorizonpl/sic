@@ -9,6 +9,10 @@ function install_package()
         show_message "Installing EPEL release package..."
         rpm -ihv http://dl.fedoraproject.org/pub/epel/beta/7/x86_64/epel-release-7-0.2.noarch.rpm >> /tmp/install.log 2>&1
         show_result $?
+
+        show_message "Installing REMI release package..."
+        rpm -ihv http://rpms.famillecollet.com/enterprise/remi-release-7.rpm >> /tmp/install.log 2>&1
+        show_result $?
     fi
 
     show_message "Installing basic tools..."

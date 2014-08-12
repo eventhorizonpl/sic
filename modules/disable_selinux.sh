@@ -26,10 +26,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     elif [ $1 == "remove" ]
     then
-	remove_package
+        remove_package
     fi
     shift
 done

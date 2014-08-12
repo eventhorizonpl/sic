@@ -47,7 +47,7 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

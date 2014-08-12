@@ -13,6 +13,14 @@ function configure_package()
     show_message "\tAdding new user..."
     smbpasswd -a michal
 
+    show_message "\tEnabling samba in firewall..."
+    firewall-cmd --permanent --zone=public --add-service=samba >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestarting firewalld..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tRestarting smb..."
     systemctl restart smb.service >> /tmp/install.log 2>&1
     show_result $?

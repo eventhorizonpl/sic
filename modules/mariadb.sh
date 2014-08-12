@@ -75,7 +75,7 @@ function install_package()
     if [ $OS == "fedora" ]
     then
         show_message "Installing mariadb..."
-        yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel phpMyAdmin >> /tmp/install.log 2>&1
+        yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then
@@ -84,7 +84,7 @@ function install_package()
         show_result $?
 
         show_message "Installing mariadb..."
-        yum install --assumeyes --enablerepo=remi mariadb mariadb-libs mariadb-server mariadb-devel phpMyAdmin >> /tmp/install.log 2>&1
+        yum install --assumeyes --enablerepo=remi mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
         show_result $?
     fi
 }

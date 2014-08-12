@@ -24,9 +24,9 @@ function configure_package()
 
     if [ -e /home/data/pgsql/ ]
     then
-	show_message "\tRemoving /home/data/pgsql..."
-	rm -rf /home/data/pgsql/ >> /tmp/install.log 2>&1
-	show_result $?
+        show_message "\tRemoving /home/data/pgsql..."
+        rm -rf /home/data/pgsql/ >> /tmp/install.log 2>&1
+        show_result $?
     fi
 
     show_message "\tCreating /home/data/pgsql..."
@@ -51,6 +51,14 @@ function configure_package()
 
     show_message "\tCreating database..."
     postgresql-setup initdb >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tEnabling postgresql in firewall..."
+    firewall-cmd --permanent --zone=public --add-service=postgresql >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestarting firewalld..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tRestarting postgresql..."
@@ -82,7 +90,7 @@ function configure_package()
 function install_package()
 {
     show_message "Installing postgresql..."
-    yum install --assumeyes postgresql postgresql-devel postgresql-libs postgresql-server postgresql-upgrade phpPgAdmin >> /tmp/install.log 2>&1
+    yum install --assumeyes postgresql postgresql-devel postgresql-libs postgresql-server postgresql-upgrade >> /tmp/install.log 2>&1
     show_result $?
 }
 
@@ -90,10 +98,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     elif [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

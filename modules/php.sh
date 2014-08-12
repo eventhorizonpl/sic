@@ -28,7 +28,7 @@ function install_package()
     if [ $OS == "fedora" ]
     then
         show_message "Installing php..."
-        yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* --skip-broken >> /tmp/install.log 2>&1
+        yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then
@@ -37,7 +37,7 @@ function install_package()
         show_result $?
 
         show_message "Installing php..."
-        yum install --assumeyes --enablerepo=remi-php55 php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* --skip-broken >> /tmp/install.log 2>&1
+        yum install --assumeyes --enablerepo=remi-php55 php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
         show_result $?
     fi
 }
@@ -46,10 +46,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     elif [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

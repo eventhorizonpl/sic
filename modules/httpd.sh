@@ -10,40 +10,28 @@ function configure_package()
     mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
-#    show_message "\tChanging context /home/data/..."
-#    semanage fcontext -a -t var_t '/home/data(/.*)?' >> /tmp/install.log 2>&1
-#    show_result $?
-
-#    show_message "\tRestoring context /home/data/..."
-#    restorecon -R -v /home/data >> /tmp/install.log 2>&1
-#    show_result $?
-
     if [ -e /home/data/www ]
     then
-	show_message "\tRemoving /home/data/www..."
-	rm -rf /home/data/www/ >> /tmp/install.log 2>&1
-	show_result $?
+        show_message "\tRemoving /home/data/www..."
+        rm -rf /home/data/www/ >> /tmp/install.log 2>&1
+        show_result $?
     fi
 
     show_message "\tCreating /home/data/www..."
     cp -R /var/www/ /home/data/ >> /tmp/install.log 2>&1
     show_result $?
 
-#    show_message "\tChanging context /home/data/www..."
-#    semanage fcontext -a -t httpd_sys_content_t '/home/data/www(/.*)?' >> /tmp/install.log 2>&1
-#    show_result $?
+    show_message "\tChanging context /home/data/www..."
+    semanage fcontext -a -t httpd_sys_content_t '/home/data/www(/.*)?' >> /tmp/install.log 2>&1
+    show_result $?
 
-#    show_message "\tChanging context /home/data/www/cgi-bin..."
-#    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin(/.*)?' >> /tmp/install.log 2>&1
-#    show_result $?
+    show_message "\tChanging context /home/data/www/cgi-bin..."
+    semanage fcontext -a -t httpd_sys_script_exec_t '/home/data/www/cgi-bin(/.*)?' >> /tmp/install.log 2>&1
+    show_result $?
 
-#    show_message "\tChanging context /home/data/www/html..."
-#    semanage fcontext -a -t httpd_sys_content_t '/home/data/www/html(/.*)?' >> /tmp/install.log 2>&1
-#    show_result $?
-
-#    show_message "\tRestoring context /home/data/www..."
-#    restorecon -R -v /home/data/www >> /tmp/install.log 2>&1
-#    show_result $?
+    show_message "\tRestoring context /home/data/www..."
+    restorecon -R -v /home/data/www >> /tmp/install.log 2>&1
+    show_result $?
 
     show_message "\tPathes in config file..."
     sed -i "s/\/var\/www/\/home\/data\/www/g" /etc/httpd/conf/httpd.conf >> /tmp/install.log 2>&1
@@ -51,6 +39,14 @@ function configure_package()
 
     show_message "\tCopying config file..."
     cp etc/httpd/conf.d/virtual.conf /etc/httpd/conf.d/ >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tEnabling httpd in firewall..."
+    firewall-cmd --permanent --zone=public --add-service=http >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestarting firewalld..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tRestarting httpd..."
@@ -73,10 +69,10 @@ while [ $# -ne 0 ]
 do
     if [ $1 == "install" ]
     then
-	install_package
+        install_package
     elif [ $1 == "configure" ]
     then
-	configure_package
+        configure_package
     fi
     shift
 done

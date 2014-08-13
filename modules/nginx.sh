@@ -10,6 +10,14 @@ function configure_package()
     sed -i "s/listen       80/listen       81/g" /etc/nginx/nginx.conf >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tEnabling nginx in firewall..."
+    firewall-cmd --permanent --zone=public --add-port=81/tcp >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestarting firewalld..."
+    systemctl restart firewalld.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tRestarting nginx..."
     systemctl restart nginx.service >> /tmp/install.log 2>&1
     show_result $?

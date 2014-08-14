@@ -1,0 +1,10 @@
+[Unit]
+Description=Solr
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/opt/solr/example/solr-service.sh
+
+[Install]
+WantedBy=multi-user.target

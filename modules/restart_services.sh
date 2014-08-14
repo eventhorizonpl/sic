@@ -10,6 +10,10 @@ function configure_package()
     systemctl restart firewalld.service >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\telasticsearch.service..."
+    systemctl restart elasticsearch.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\thttpd.service..."
     systemctl restart httpd.service >> /tmp/install.log 2>&1
     show_result $?
@@ -26,8 +30,16 @@ function configure_package()
     systemctl restart mariadb.service >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tneo4j-service.service..."
+    systemctl restart neo4j-service.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tnginx.service..."
     systemctl restart nginx.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tpostfix.service..."
+    systemctl restart postfix.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tpostgresql.service..."

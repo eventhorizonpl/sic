@@ -94,6 +94,11 @@ then
     sh modules/elasticsearch.sh "install" "configure"
 fi
 
+if [ $MODULE_NEO4J == "yes" ]
+then
+    sh modules/neo4j.sh "download" "install" "configure"
+fi
+
 if [ $MODULE_DISABLE_SERVICES == "yes" ]
 then
     sh modules/disable_services.sh "configure"

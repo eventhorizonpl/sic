@@ -99,6 +99,11 @@ then
     sh modules/neo4j.sh "download" "install" "configure"
 fi
 
+if [ $MODULE_SOLR == "yes" ]
+then
+    sh modules/solr.sh "download" "install" "configure"
+fi
+
 if [ $MODULE_DISABLE_SERVICES == "yes" ]
 then
     sh modules/disable_services.sh "configure"

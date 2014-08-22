@@ -74,6 +74,11 @@ then
     sh modules/php.sh "install" "configure"
 fi
 
+if [ $MODULE_REDIS == "yes" ]
+then
+    sh modules/redis.sh "install" "configure"
+fi
+
 if [ $MODULE_SAMBA == "yes" ]
 then
     sh modules/samba.sh "install" "configure"

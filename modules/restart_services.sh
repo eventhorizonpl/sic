@@ -46,8 +46,16 @@ function configure_package()
     systemctl restart postgresql.service >> /tmp/install.log 2>&1
     show_result $?
 
+    show_message "\tredis.service..."
+    systemctl restart redis.service >> /tmp/install.log 2>&1
+    show_result $?
+
     show_message "\tsmb.service..."
     systemctl restart smb.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tsolr.service..."
+    systemctl restart solr.service >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tvarnish.service..."

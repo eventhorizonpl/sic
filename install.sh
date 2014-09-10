@@ -14,7 +14,7 @@ source ./$CONFIG
 echo > /tmp/install.log
 
 show_message "Setting hostname..."
-echo $HOSTNAME > /etc/hostname
+hostnamectl set-hostname $HOSTNAME
 show_result $?
 
 show_message "Setting hosts..."

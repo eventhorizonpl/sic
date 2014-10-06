@@ -22,6 +22,9 @@ yes | cp etc/hosts /etc/
 echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
 show_result $?
 
+mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
+mount -t tmpfs -o size=1024m tmpfs /tmp
+
 sh modules/user.sh "configure"
 
 if [ $MODULE_DISABLE_SELINUX == "yes" ]

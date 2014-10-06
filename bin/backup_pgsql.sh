@@ -10,6 +10,6 @@ DBS="$(psql -U admin -l | awk '{ print $1}' | grep -vE '^-|^List|^Name|^Nazwa|te
 
 for db in ${DBS[@]}
 do
-    echo ${db}-$(date +%m-%d-%y).sql.bz2 is being saved in $BACKUP_DIR
-    pg_dump -U admin $db | bzip2 -c > ${db}-$(date +%m-%d-%y).sql.bz2
+    echo ${db}-$(date +%y-%m-%d).sql.bz2 is being saved in $BACKUP_DIR
+    pg_dump -U admin $db | bzip2 -c > ${db}-$(date +%y-%m-%d).sql.bz2
 done

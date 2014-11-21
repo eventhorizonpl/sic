@@ -27,6 +27,14 @@ mount -t tmpfs -o size=1024m tmpfs /tmp
 
 sh modules/user.sh "configure"
 
+show_message "\tEnabling angular in firewall..."
+firewall-cmd --permanent --zone=public --add-port=8000/tcp >> /tmp/install.log 2>&1
+show_result $?
+
+show_message "\tRestarting firewalld..."
+systemctl restart firewalld.service >> /tmp/install.log 2>&1
+show_result $?
+
 if [ $MODULE_DISABLE_SELINUX == "yes" ]
 then
     sh modules/disable_selinux.sh "configure" "remove"

@@ -28,7 +28,7 @@ function install_package()
     show_result $?
 
     show_message "Moving neo4j..."
-    mv /tmp/neo4j-community-2.1.3/ /opt/neo4j >> /tmp/install.log 2>&1
+    mv /tmp/neo4j-community-2.1.6/ /opt/neo4j >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "Installing neo4j..."
@@ -39,7 +39,7 @@ function install_package()
 function download_package()
 {
     show_message "Downloading neo4j..."
-    wget -O /tmp/neo4j.tar.gz http://dist.neo4j.org/neo4j-community-2.1.3-unix.tar.gz?_ga=1.176809132.866451536.1407967915 >> /tmp/install.log 2>&1
+    wget -O /tmp/neo4j.tar.gz http://dist.neo4j.org/neo4j-community-2.1.6-unix.tar.gz?_ga=1.176809132.866451536.1407967915 >> /tmp/install.log 2>&1
     show_result $?
 }
 

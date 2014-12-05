@@ -27,6 +27,13 @@ function install_package()
     tar zxvf /tmp/neo4j.tar.gz -C /tmp/ >> /tmp/install.log 2>&1
     show_result $?
 
+    if [ -e /opt/neo4j/ ]
+    then
+        show_message "\tRemoving /opt/neo4j..."
+        rm -rf /opt/neo4j/ >> /tmp/install.log 2>&1
+        show_result $?
+    fi
+
     show_message "Moving neo4j..."
     mv /tmp/neo4j-community-2.1.6/ /opt/neo4j >> /tmp/install.log 2>&1
     show_result $?

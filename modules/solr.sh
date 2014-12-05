@@ -39,15 +39,22 @@ function install_package()
     tar zxvf /tmp/solr.tgz -C /tmp/ >> /tmp/install.log 2>&1
     show_result $?
 
+    if [ -e /opt/solr/ ]
+    then
+        show_message "\tRemoving /opt/solr..."
+        rm -rf /opt/solr/ >> /tmp/install.log 2>&1
+        show_result $?
+    fi
+
     show_message "Moving solr..."
-    mv /tmp/solr-4.9.0/ /opt/solr >> /tmp/install.log 2>&1
+    mv /tmp/solr-4.10.2/ /opt/solr >> /tmp/install.log 2>&1
     show_result $?
 }
 
 function download_package()
 {
     show_message "Downloading solr..."
-    wget -O /tmp/solr.tgz http://ftp.ps.pl/pub/apache/lucene/solr/4.9.0/solr-4.9.0.tgz >> /tmp/install.log 2>&1
+    wget -O /tmp/solr.tgz http://ftp.ps.pl/pub/apache/lucene/solr/4.10.2/solr-4.10.2.tgz >> /tmp/install.log 2>&1
     show_result $?
 }
 

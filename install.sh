@@ -80,6 +80,11 @@ then
     sh modules/postgresql.sh "install" "configure"
 fi
 
+if [ $MODULE_POSTGRESQL94 == "yes" ]
+then
+    sh modules/postgresql94.sh "install" "configure"
+fi
+
 if [ $MODULE_PHP == "yes" ]
 then
     sh modules/php.sh "install" "configure"

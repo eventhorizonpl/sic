@@ -14,14 +14,6 @@ function configure_package()
     mkdir -p /home/data >> /tmp/install.log 2>&1
     show_result $?
 
-#    show_message "\tChanging context /home/data/..."
-#    semanage fcontext -a -t var_t '/home/data' >> /tmp/install.log 2>&1
-#    show_result $?
-
-#    show_message "\tRestoring context /home/data/..."
-#    restorecon -R -v /home/data >> /tmp/install.log 2>&1
-#    show_result $?
-
     if [ -e /home/data/pgsql94/ ]
     then
         show_message "\tRemoving /home/data/pgsql94..."
@@ -36,6 +28,16 @@ function configure_package()
 
     show_message "\tChanging ownership /home/data/pgsql94..."
     chown -R postgres:postgres /home/data/pgsql94/ >> /tmp/install.log 2>&1
+    show_result $?
+
+#semanage port -a -t postgresql_port_t -p tcp 5433
+
+    show_message "\tChanging context /home/data/pgsql94/data/..."
+    semanage fcontext -a -t postgresql_db_t "/home/data/pgsql94/data(/.*)?" >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tRestoring context /home/data/pgsql94/data/..."
+    restorecon -R /home/data/pgsql94/data >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tCopying service config file..."

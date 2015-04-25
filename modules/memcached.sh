@@ -16,8 +16,15 @@ function configure_package()
 function install_package()
 {
     show_message "Installing memcached..."
-    yum install --assumeyes memcached >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        dnf install --assumeyes memcached >> /tmp/install.log 2>&1
+        show_result $?
+    elif [ $OS == "rhel" ]
+    then
+        yum install --assumeyes memcached >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

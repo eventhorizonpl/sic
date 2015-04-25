@@ -57,8 +57,15 @@ function configure_package()
 function install_package()
 {
     show_message "Installing mongodb..."
-    yum install --assumeyes mongodb mongodb-server >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        dnf install --assumeyes mongodb mongodb-server >> /tmp/install.log 2>&1
+        show_result $?
+    elif [ $OS == "rhel" ]
+    then
+        yum install --assumeyes mongodb mongodb-server >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

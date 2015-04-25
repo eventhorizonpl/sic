@@ -86,9 +86,12 @@ then
     sh modules/postgresql.sh "install" "configure"
 fi
 
-if [ $MODULE_POSTGRESQL94 == "yes" ]
+if [ $OS == "rhel" ]
 then
-    sh modules/postgresql94.sh "install" "configure"
+    if [ $MODULE_POSTGRESQL94 == "yes" ]
+    then
+        sh modules/postgresql94.sh "install" "configure"
+    fi
 fi
 
 if [ $MODULE_PHP == "yes" ]

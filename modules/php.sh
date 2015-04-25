@@ -33,14 +33,13 @@ function configure_package()
 
 function install_package()
 {
+    show_message "Installing php..."
     if [ $OS == "fedora" ]
     then
-        show_message "Installing php..."
-        yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
+        dnf install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        show_message "Installing php..."
         yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached php-phpunit-* phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
         show_result $?
     fi

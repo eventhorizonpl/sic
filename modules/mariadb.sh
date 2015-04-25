@@ -69,8 +69,15 @@ function configure_package()
 function install_package()
 {
     show_message "Installing mariadb..."
-    yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        dnf install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+        show_result $?
+    elif [ $OS == "rhel" ]
+    then
+        yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

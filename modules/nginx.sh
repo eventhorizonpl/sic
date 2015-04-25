@@ -29,14 +29,13 @@ function configure_package()
 
 function install_package()
 {
+    show_message "Installing nginx..."
     if [ $OS == "fedora" ]
     then
-        show_message "Installing nginx..."
-        yum install --assumeyes nginx >> /tmp/install.log 2>&1
+        dnf install --assumeyes nginx >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        show_message "Installing nginx..."
         yum install --assumeyes --enablerepo=epel nginx >> /tmp/install.log 2>&1
         show_result $?
     fi

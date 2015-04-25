@@ -18,8 +18,15 @@ function configure_package()
 function install_package()
 {
     show_message "Installing varnish..."
-    yum install --assumeyes varnish varnish-libs >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS == "fedora" ]
+    then
+        dnf install --assumeyes varnish varnish-libs >> /tmp/install.log 2>&1
+        show_result $?
+    elif [ $OS == "rhel" ]
+    then
+        yum install --assumeyes varnish varnish-libs >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]

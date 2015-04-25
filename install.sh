@@ -131,7 +131,13 @@ fi
 
 if [ $MODULE_SOLR == "yes" ]
 then
-    sh modules/solr.sh "download" "install" "configure"
+    if [ $OS == "fedora" ]
+    then
+        sh modules/solr.sh "install" "configure"
+    elif [ $OS == "rhel" ]
+    then
+        sh modules/solr.sh "download" "install" "configure"
+    fi
 fi
 
 if [ $MODULE_DISABLE_SERVICES == "yes" ]

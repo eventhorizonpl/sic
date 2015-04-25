@@ -22,8 +22,14 @@ yes | cp etc/hosts /etc/
 echo "127.0.0.1 $HOSTNAME" >> /etc/hosts
 show_result $?
 
-mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
-mount -t tmpfs -o size=1024m tmpfs /tmp
+if [ $OS == "fedora" ]
+then
+    mount -t tmpfs -o size=1024m tmpfs /var/cache/dnf
+elif [ $OS == "rhel" ]
+then
+    mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
+    mount -t tmpfs -o size=1024m tmpfs /tmp
+fi
 
 sh modules/user.sh "configure"
 

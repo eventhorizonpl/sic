@@ -7,7 +7,7 @@ function install_package()
     if [ $OS == "rhel" ]
     then
         show_message "Installing EPEL release package..."
-        rpm -ihv http://dl.fedoraproject.org/pub/epel/7/x86_64/epel-release-7-1.noarch.rpm >> /tmp/install.log 2>&1
+        rpm -ihv http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm >> /tmp/install.log 2>&1
         show_result $?
 
         show_message "Installing REMI release package..."

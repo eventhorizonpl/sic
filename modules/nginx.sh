@@ -6,7 +6,7 @@ function configure_package()
 {
     show_message "Configuring nginx..."
 
-    show_message "\tPathes in config file..."
+    show_message "\tPorts in config file..."
     sed -i "s/listen       80/listen       81/g" /etc/nginx/nginx.conf >> /tmp/install.log 2>&1
     show_result $?
 

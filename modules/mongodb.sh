@@ -10,29 +10,6 @@ function configure_package()
     systemctl stop mongod.service >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tCreating /home/data..."
-    mkdir -p /home/data >> /tmp/install.log 2>&1
-    show_result $?
-
-    if [ -e /home/data/mongodb/ ]
-    then
-        show_message "\tRemoving /home/data/mongodb..."
-        rm -rf /home/data/mongodb >> /tmp/install.log 2>&1
-        show_result $?
-    fi
-
-    show_message "\tCreating /home/data/mongodb..."
-    cp -R /var/lib/mongodb/ /home/data/ >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tChanging ownership /home/data/mongodb..."
-    chown -R mongodb:mongodb /home/data/mongodb/ >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tPathes in config file..."
-    sed -i "s/\/var\/lib\/mongodb/\/home\/data\/mongodb/g" /etc/mongodb.conf >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tDownloading phpMoAdmin..."
     wget -O /tmp/master.zip https://github.com/MongoDB-Rox/phpMoAdmin-MongoDB-Admin-Tool-for-PHP/archive/master.zip >> /tmp/install.log 2>&1
     show_result $?

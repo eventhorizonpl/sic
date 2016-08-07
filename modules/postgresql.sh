@@ -10,39 +10,6 @@ function configure_package()
     systemctl stop postgresql.service >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tCreating /home/data..."
-    mkdir -p /home/data >> /tmp/install.log 2>&1
-    show_result $?
-
-    if [ -e /home/data/pgsql/ ]
-    then
-        show_message "\tRemoving /home/data/pgsql..."
-        rm -rf /home/data/pgsql/ >> /tmp/install.log 2>&1
-        show_result $?
-    fi
-
-    show_message "\tCreating /home/data/pgsql..."
-    cp -R /var/lib/pgsql/ /home/data/ >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tChanging ownership /home/data/pgsql..."
-    chown -R postgres:postgres /home/data/pgsql/ >> /tmp/install.log 2>&1
-    show_result $?
-
-#semanage port -a -t postgresql_port_t -p tcp 5433
-
-    show_message "\tChanging context /home/data/pgsql/data/..."
-    semanage fcontext -a -t postgresql_db_t "/home/data/pgsql/data(/.*)?" >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tRestoring context /home/data/pgsql/data/..."
-    restorecon -R /home/data/pgsql/data >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tCopying service config file..."
-    cp etc/systemd/system/postgresql.service /etc/systemd/system/ >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tReloading systemd..."
     systemctl --system daemon-reload >> /tmp/install.log 2>&1
     show_result $?

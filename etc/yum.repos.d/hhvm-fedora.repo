@@ -1,3 +1,0 @@
-[hhvm]
-name=HHVM for Fedora $releasever - $basearch
-baseurl=http://dl.hhvm.com/fedora/$releasever/$basearch/

@@ -110,11 +110,6 @@ then
     sh modules/varnish.sh "install" "configure"
 fi
 
-if [ $MODULE_HHVM == "yes" ]
-then
-    sh modules/hhvm.sh "install"
-fi
-
 if [ $MODULE_ELASTICSEARCH == "yes" ]
 then
     sh modules/elasticsearch.sh "install" "configure"

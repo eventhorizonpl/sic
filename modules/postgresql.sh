@@ -6,14 +6,6 @@ function configure_package()
 {
     show_message "Configuring postgresql..."
 
-    show_message "\tStopping postgresql..."
-    systemctl stop postgresql.service >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tReloading systemd..."
-    systemctl --system daemon-reload >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tCreating database..."
     postgresql-setup initdb >> /tmp/install.log 2>&1
     show_result $?

@@ -6,10 +6,6 @@ function configure_package()
 {
     show_message "Configuring redis..."
 
-    show_message "\tStopping redis..."
-    systemctl stop redis.service >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tRestarting redis..."
     systemctl restart redis.service >> /tmp/install.log 2>&1
     show_result $?

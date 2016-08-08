@@ -45,11 +45,6 @@ show_message "\tRestarting firewalld..."
 systemctl restart firewalld.service >> /tmp/install.log 2>&1
 show_result $?
 
-#if [ $MODULE_DISABLE_SELINUX == "yes" ]
-#then
-#    sh modules/disable_selinux.sh "configure" "remove"
-#fi
-
 if [ $MODULE_BASIC_TOOLS == "yes" ]
 then
     sh modules/basic_tools.sh "install"

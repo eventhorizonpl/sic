@@ -6,10 +6,6 @@ function configure_package()
 {
     show_message "Configuring mongodb..."
 
-    show_message "\tStopping mongod..."
-    systemctl stop mongod.service >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tDownloading phpMoAdmin..."
     wget -O /tmp/master.zip https://github.com/MongoDB-Rox/phpMoAdmin-MongoDB-Admin-Tool-for-PHP/archive/master.zip >> /tmp/install.log 2>&1
     show_result $?

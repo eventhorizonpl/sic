@@ -6,10 +6,6 @@ function configure_package()
 {
     show_message "Configuring postfix..."
 
-    show_message "\tStopping postfix..."
-    systemctl stop postfix.service >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tRestarting postfix..."
     systemctl restart postfix.service >> /tmp/install.log 2>&1
     show_result $?

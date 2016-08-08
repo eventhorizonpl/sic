@@ -6,10 +6,6 @@ function configure_package()
 {
     show_message "Configuring mariadb..."
 
-    show_message "\tStopping mariadb..."
-    systemctl stop mariadb.service >> /tmp/install.log 2>&1
-    show_result $?
-
     show_message "\tEnabling mysql in firewall..."
     firewall-cmd --permanent --zone=public --add-service=mysql >> /tmp/install.log 2>&1
     show_result $?

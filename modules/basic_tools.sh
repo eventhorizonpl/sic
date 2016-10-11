@@ -25,10 +25,8 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        yum install --assumeyes acl bootchart bzip2 cmake cryptsetup deltarpm fedup \
-        gcc gcc-c++ git java libsqlite3x libsqlite3x-devel lm_sensors lsof lucene make mc \
-        net-tools nmap nodejs npm ntpdate patch pcre-devel policycoreutils-python redhat-rpm-config \
-        screen subversion tar tigervnc-server unixODBC-devel unzip vim wget >> /tmp/install.log 2>&1
+        yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
+        screen tar unzip vim wget >> /tmp/install.log 2>&1
         show_result $?
     fi
 
@@ -40,9 +38,9 @@ function install_package()
     systemctl enable ntpdate.service >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "Installing npm tools..."
-    npm install -g less >> /tmp/install.log 2>&1
-    show_result $?
+#    show_message "Installing npm tools..."
+#    npm install -g less >> /tmp/install.log 2>&1
+#    show_result $?
 }
 
 while [ $# -ne 0 ]

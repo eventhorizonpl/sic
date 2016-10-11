@@ -33,13 +33,13 @@ fi
 
 sh modules/user.sh "configure"
 
-show_message "\tEnabling angular in firewall..."
-firewall-cmd --permanent --zone=public --add-port=8000/tcp >> /tmp/install.log 2>&1
-show_result $?
+#show_message "\tEnabling angular in firewall..."
+#firewall-cmd --permanent --zone=public --add-port=8000/tcp >> /tmp/install.log 2>&1
+#show_result $?
 
-show_message "\tEnabling meteor in firewall..."
-firewall-cmd --permanent --zone=public --add-port=3000/tcp >> /tmp/install.log 2>&1
-show_result $?
+#show_message "\tEnabling meteor in firewall..."
+#firewall-cmd --permanent --zone=public --add-port=3000/tcp >> /tmp/install.log 2>&1
+#show_result $?
 
 show_message "\tRestarting firewalld..."
 systemctl restart firewalld.service >> /tmp/install.log 2>&1

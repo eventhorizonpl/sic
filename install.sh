@@ -31,6 +31,14 @@ then
     mount -t tmpfs -o size=1024m tmpfs /tmp
 fi
 
+if [ $OS == "fedora" ]
+then
+    dnf upgrade --assumeyes >> /tmp/install.log 2>&1
+elif [ $OS == "rhel" ]
+then
+    yum upgrade --assumeyes >> /tmp/install.log 2>&1
+fi
+
 sh modules/user.sh "configure"
 
 #show_message "\tEnabling angular in firewall..."

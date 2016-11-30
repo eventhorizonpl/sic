@@ -18,10 +18,8 @@ function install_package()
     show_message "Installing basic tools..."
     if [ $OS == "fedora" ]
     then
-        dnf install --assumeyes acl bzip2 cmake cryptsetup deltarpm fedup \
-        gcc gcc-c++ git java libsqlite3x libsqlite3x-devel lm_sensors lsof lucene make mc \
-        net-tools nmap nodejs npm ntpdate patch pcre-devel policycoreutils-python redhat-rpm-config \
-        screen subversion tar tigervnc-server unixODBC-devel unzip vim wget >> /tmp/install.log 2>&1
+        dnf install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
+        screen tar unzip vim wget >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then

@@ -35,9 +35,9 @@ function configure_package()
     su postgres -c "psql < /tmp/postgresql.sql" >> /tmp/install.log 2>&1
     show_result $?
 
-#    show_message "\tCopying pg_hba config file..."
-#    cp etc/pg_hba.conf /home/data/pgsql/data >> /tmp/install.log 2>&1
-#    show_result $?
+    show_message "\tCopying pg_hba config file..."
+    cp etc/pg_hba.conf /var/lib/pgsql/data >> /tmp/install.log 2>&1
+    show_result $?
 
     show_message "\tRestarting postgresql..."
     systemctl restart postgresql.service >> /tmp/install.log 2>&1

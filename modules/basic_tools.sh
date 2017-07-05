@@ -7,7 +7,7 @@ function install_package()
     if [ $OS == "rhel" ]
     then
         show_message "Installing EPEL release package..."
-        rpm -ihv http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm >> /tmp/install.log 2>&1
+        rpm -ihv http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm >> /tmp/install.log 2>&1
         show_result $?
 
         show_message "Installing REMI release package..."
@@ -18,8 +18,13 @@ function install_package()
     show_message "Installing basic tools..."
     if [ $OS == "fedora" ]
     then
-        dnf install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
-        screen tar unzip vim wget >> /tmp/install.log 2>&1
+        if [ $ONLY_ESSENTIAL == "yes" ]
+        then
+            dnf install --assumeyes bzip2 git-core mc ntpdate vim >> /tmp/install.log 2>&1
+        else
+            dnf install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
+            screen tar unzip vim wget >> /tmp/install.log 2>&1
+        fi
         show_result $?
     elif [ $OS == "rhel" ]
     then

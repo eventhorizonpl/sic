@@ -35,7 +35,12 @@ function install_package()
     show_message "Installing samba..."
     if [ $OS == "fedora" ]
     then
-        dnf install --assumeyes samba samba-client samba-common samba-common-tools samba-libs samba-winbind >> /tmp/install.log 2>&1
+        if [ $ONLY_ESSENTIAL == "yes" ]
+        then
+            dnf install --assumeyes samba samba-common-tools >> /tmp/install.log 2>&1
+        else
+            dnf install --assumeyes samba samba-client samba-common samba-common-tools samba-libs samba-winbind >> /tmp/install.log 2>&1
+        fi
         show_result $?
     elif [ $OS == "rhel" ]
     then

@@ -20,10 +20,10 @@ function install_package()
     then
         if [ $ONLY_ESSENTIAL == "yes" ]
         then
-            dnf install --assumeyes bzip2 git-core mc ntpdate vim >> /tmp/install.log 2>&1
+            dnf install --assumeyes bzip2 git-core mc ntpdate policycoreutils-python-utils vim >> /tmp/install.log 2>&1
         else
             dnf install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
-            screen tar unzip vim wget >> /tmp/install.log 2>&1
+            policycoreutils-python-utils screen tar unzip vim wget >> /tmp/install.log 2>&1
         fi
         show_result $?
     elif [ $OS == "rhel" ]

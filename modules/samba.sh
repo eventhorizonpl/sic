@@ -28,6 +28,14 @@ function configure_package()
     show_message "\tEnabling smb..."
     systemctl enable smb.service >> /tmp/install.log 2>&1
     show_result $?
+
+    show_message "\tEnabling selinux for samba..."
+    semanage fcontext -a -t samba_share_t "/home/michal/projekty(/.*)?" >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tEnabling selinux for samba..."
+    semanage restorecon -R -v /home/michal/projekty/ >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 function install_package()

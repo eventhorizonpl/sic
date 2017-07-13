@@ -39,7 +39,7 @@ then
     yum upgrade --assumeyes >> /tmp/install.log 2>&1
 fi
 
-sh modules/user.sh "configure"
+sh modules/user.sh ./$CONFIG "configure"
 
 #show_message "\tEnabling angular in firewall..."
 #firewall-cmd --permanent --zone=public --add-port=8000/tcp >> /tmp/install.log 2>&1
@@ -55,7 +55,7 @@ show_result $?
 
 if [ $MODULE_BASIC_TOOLS == "yes" ]
 then
-    sh modules/basic_tools.sh "install"
+    sh modules/basic_tools.sh ./$CONFIG "install"
 fi
 
 if [ $MODULE_HTTPD == "yes" ]
@@ -105,7 +105,7 @@ fi
 
 if [ $MODULE_SAMBA == "yes" ]
 then
-    sh modules/samba.sh "install" "configure"
+    sh modules/samba.sh ./$CONFIG "install" "configure"
 fi
 
 if [ $MODULE_VARNISH == "yes" ]

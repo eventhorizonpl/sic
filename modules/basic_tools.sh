@@ -51,6 +51,9 @@ do
     if [ $1 == "install" ]
     then
         install_package
+    elif [ -f $1 ]
+    then
+        source $1
     fi
     shift
 done

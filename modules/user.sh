@@ -70,6 +70,9 @@ do
     if [ $1 == "configure" ]
     then
         configure_package
+    elif [ -f $1 ]
+    then
+        source $1
     fi
     shift
 done

@@ -34,7 +34,7 @@ function configure_package()
     show_result $?
 
     show_message "\tEnabling selinux for samba..."
-    semanage restorecon -R -v /home/michal/projekty/ >> /tmp/install.log 2>&1
+    restorecon -R -v /home/michal/projekty/ >> /tmp/install.log 2>&1
     show_result $?
 }
 

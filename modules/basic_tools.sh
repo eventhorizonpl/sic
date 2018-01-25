@@ -29,7 +29,7 @@ function install_package()
     elif [ $OS == "rhel" ]
     then
         yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
-        screen tar unzip vim wget >> /tmp/install.log 2>&1
+        policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
         show_result $?
     fi
 

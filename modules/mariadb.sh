@@ -32,7 +32,7 @@ function install_package()
     show_message "Installing mariadb..."
     if [ $OS == "fedora" ]
     then
-        dnf install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+        dnf install --assumeyes mariadb mariadb-server mariadb-devel >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then

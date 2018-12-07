@@ -40,8 +40,11 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        yum install --assumeyes php php-bcmath php-cli php-common php-fpm php-gd php-gmp php-imap php-intl php-mbstring php-mcrypt php-mysqlnd php-opcache php-pdo php-pgsql php-process php-snmp php-xml php-pecl-imagick php-pecl-apcu php-pecl-xdebug php-pecl-mongo php-pecl-memcache php-pecl-memcached phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
-        show_result $?
+        if [ $VERSION == "7" ]
+        then
+            yum install --enablerepo=remi-php71,remi,remi-safe --assumeyes php php-cli php-common php-mysqlnd php-opcache php-pdo php-pgsql phpPgAdmin phpMyAdmin --skip-broken >> /tmp/install.log 2>&1
+            show_result $?
+        fi
     fi
 }
 

@@ -36,8 +36,11 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
-        show_result $?
+        if [ $VERSION == "7" ]
+        then
+            yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+            show_result $?
+        fi
     fi
 }
 

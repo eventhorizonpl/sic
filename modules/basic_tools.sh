@@ -6,13 +6,16 @@ function install_package()
 {
     if [ $OS == "rhel" ]
     then
-        show_message "Installing EPEL release package..."
-        rpm -ihv http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm >> /tmp/install.log 2>&1
-        show_result $?
+        if [ $VERSION == "7" ]
+        then
+            show_message "Installing EPEL release package..."
+            rpm -ihv https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm >> /tmp/install.log 2>&1
+            show_result $?
 
-        show_message "Installing REMI release package..."
-        rpm -ihv http://rpms.famillecollet.com/enterprise/remi-release-7.rpm >> /tmp/install.log 2>&1
-        show_result $?
+            show_message "Installing REMI release package..."
+            rpm -ihv http://rpms.remirepo.net/enterprise/remi-release-7.rpm >> /tmp/install.log 2>&1
+            show_result $?
+        fi
     fi
 
     show_message "Installing basic tools..."
@@ -28,9 +31,12 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
-        policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
-        show_result $?
+        if [ $VERSION == "7" ]
+        then
+            yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
+            policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
+            show_result $?
+        fi
     fi
 
     show_message "\tRestarting ntpdate..."

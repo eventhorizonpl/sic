@@ -27,8 +27,11 @@ then
     mount -t tmpfs -o size=1024m tmpfs /var/cache/dnf
 elif [ $OS == "rhel" ]
 then
-    mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
-    mount -t tmpfs -o size=1024m tmpfs /tmp
+    if [ $VERSION == "7" ]
+    then
+        mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
+        mount -t tmpfs -o size=1024m tmpfs /tmp
+    fi
 fi
 
 if [ $OS == "fedora" ]
@@ -36,7 +39,10 @@ then
     dnf upgrade --assumeyes >> /tmp/install.log 2>&1
 elif [ $OS == "rhel" ]
 then
-    yum upgrade --assumeyes >> /tmp/install.log 2>&1
+    if [ $VERSION == "7" ]
+    then
+        yum upgrade --assumeyes >> /tmp/install.log 2>&1
+    fi
 fi
 
 sh modules/user.sh ./$CONFIG "configure"
@@ -130,7 +136,10 @@ then
         sh modules/solr.sh "install" "configure"
     elif [ $OS == "rhel" ]
     then
-        sh modules/solr.sh "download" "install" "configure"
+        if [ $VERSION == "7" ]
+        then
+            sh modules/solr.sh "download" "install" "configure"
+        fi
     fi
 fi
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT=~/projekty/cppcms/cppcms-skeleton
+ROOT=~/projects/cppcms/cppcms-skeleton
 
 cd $ROOT
 pwd

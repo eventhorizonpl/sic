@@ -1,6 +1,6 @@
 cd $HOME
-mkdir -p projekty/cppcms
-cd projekty/cppcms
+mkdir -p projects/cppcms
+cd projects/cppcms
 svn checkout svn://svn.code.sf.net/p/cppcms/code/ cppcms
 git clone https://github.com/allan-simon/cppcms-skeleton.git
 git clone https://github.com/allan-simon/tatoblog.git

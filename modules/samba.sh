@@ -30,11 +30,11 @@ function configure_package()
     show_result $?
 
     show_message "\tEnabling selinux for samba..."
-    semanage fcontext -a -t samba_share_t "/home/michal/projekty(/.*)?" >> /tmp/install.log 2>&1
+    semanage fcontext -a -t samba_share_t "/home/michal/projects(/.*)?" >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tEnabling selinux for samba..."
-    restorecon -R -v /home/michal/projekty/ >> /tmp/install.log 2>&1
+    restorecon -R -v /home/michal/projects/ >> /tmp/install.log 2>&1
     show_result $?
 }
 

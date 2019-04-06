@@ -1,8 +1,8 @@
 #!/bin/sh
 
 PROJECT=$1
-PROJECT_DIR=/home/michal/projekty/$PROJECT
-PR=/home/michal/projekty/sf2-project
+PROJECT_DIR=/home/michal/projects/$PROJECT
+PR=/home/michal/projects/sf2-project
 
 if [ ! -d $PROJECT_DIR ] || [ "$PROJECT" == "project" ]
 then

@@ -56,8 +56,8 @@ function configure_package()
     mkdir -p /home/michal/backup >> /tmp/install.log 2>&1
     show_result $?
 
-    show_message "\tCreating projekty..."
-    mkdir -p /home/michal/projekty >> /tmp/install.log 2>&1
+    show_message "\tCreating projects..."
+    mkdir -p /home/michal/projects >> /tmp/install.log 2>&1
     show_result $?
 
     show_message "\tChanging ownership..."

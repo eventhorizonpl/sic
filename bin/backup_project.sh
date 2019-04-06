@@ -1,7 +1,7 @@
 #!/bin/sh
 
 PROJECT=jobeet
-PROJECT_DIR=/home/michal/projekty/$PROJECT
+PROJECT_DIR=/home/michal/projects/$PROJECT
 
 if [ ! -d $PROJECT_DIR ] || [ "$PROJECT" == "project" ]
 then

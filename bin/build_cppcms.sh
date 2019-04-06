@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ROOT=~/projekty/cppcms/cppcms
+ROOT=~/projects/cppcms/cppcms
 
 #cd $ROOT/framework/trunk
 cd $ROOT/framework/tags/v1.0.4

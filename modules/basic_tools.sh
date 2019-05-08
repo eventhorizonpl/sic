@@ -15,6 +15,15 @@ function install_package()
             show_message "Installing REMI release package..."
             rpm -ihv http://rpms.remirepo.net/enterprise/remi-release-7.rpm >> /tmp/install.log 2>&1
             show_result $?
+        elif [ $VERSION == "8" ]
+        then
+#            show_message "Installing EPEL release package..."
+#            rpm -ihv https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm >> /tmp/install.log 2>&1
+#            show_result $?
+
+            show_message "Installing REMI release package..."
+            rpm -ihv https://rpms.remirepo.net/enterprise/remi-release-8.rpm >> /tmp/install.log 2>&1
+            show_result $?
         fi
     fi
 
@@ -36,6 +45,10 @@ function install_package()
             yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
             policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
             show_result $?
+        elif [ $VERSION == "8" ]
+            dnf install --assumeyes acl bzip2 git-core mc ntpdate patch \
+            policycoreutils-python-utils tar vim wget >> /tmp/install.log 2>&1
+        then
         fi
     fi
 
@@ -46,10 +59,6 @@ function install_package()
     show_message "\tEnabling ntpdate..."
     systemctl enable ntpdate.service >> /tmp/install.log 2>&1
     show_result $?
-
-#    show_message "Installing npm tools..."
-#    npm install -g less >> /tmp/install.log 2>&1
-#    show_result $?
 }
 
 while [ $# -ne 0 ]

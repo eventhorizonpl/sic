@@ -31,6 +31,9 @@ then
     then
         mount -t tmpfs -o size=1024m tmpfs /var/cache/yum
         mount -t tmpfs -o size=1024m tmpfs /tmp
+    elif [ $VERSION == "8" ]
+    then
+        mount -t tmpfs -o size=1024m tmpfs /var/cache/dnf
     fi
 fi
 
@@ -42,6 +45,9 @@ then
     if [ $VERSION == "7" ]
     then
         yum upgrade --assumeyes >> /tmp/install.log 2>&1
+    elif [ $VERSION == "8" ]
+    then
+        dnf upgrade --assumeyes >> /tmp/install.log 2>&1
     fi
 fi
 

@@ -70,6 +70,11 @@ then
     sh modules/basic_tools.sh ./$CONFIG "install"
 fi
 
+if [ $MODULE_GOLANG == "yes" ]
+then
+    sh modules/golang.sh "install" "configure"
+fi
+
 if [ $MODULE_HTTPD == "yes" ]
 then
     sh modules/httpd.sh "install" "configure"

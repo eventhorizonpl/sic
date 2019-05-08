@@ -53,18 +53,6 @@ fi
 
 sh modules/user.sh ./$CONFIG "configure"
 
-#show_message "\tEnabling angular in firewall..."
-#firewall-cmd --permanent --zone=public --add-port=8000/tcp >> /tmp/install.log 2>&1
-#show_result $?
-
-#show_message "\tEnabling meteor in firewall..."
-#firewall-cmd --permanent --zone=public --add-port=3000/tcp >> /tmp/install.log 2>&1
-#show_result $?
-
-show_message "\tRestarting firewalld..."
-systemctl restart firewalld.service >> /tmp/install.log 2>&1
-show_result $?
-
 if [ $MODULE_BASIC_TOOLS == "yes" ]
 then
     sh modules/basic_tools.sh ./$CONFIG "install"
@@ -83,6 +71,11 @@ fi
 if [ $MODULE_NGINX == "yes" ]
 then
     sh modules/nginx.sh "install" "configure"
+fi
+
+if [ $MODULE_NODEJS == "yes" ]
+then
+    sh modules/nodejs.sh "install" "configure"
 fi
 
 if [ $MODULE_MARIADB == "yes" ]

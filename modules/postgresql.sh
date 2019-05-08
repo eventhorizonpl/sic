@@ -57,6 +57,10 @@ function install_package()
         then
             yum install --assumeyes postgresql postgresql-devel postgresql-libs postgresql-server postgresql-upgrade >> /tmp/install.log 2>&1
             show_result $?
+        elif [ $VERSION == "8" ]
+        then
+            dnf install --assumeyes postgresql postgresql-devel postgresql-libs postgresql-server postgresql-upgrade >> /tmp/install.log 2>&1
+            show_result $?
         fi
     fi
 }

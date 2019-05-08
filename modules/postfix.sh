@@ -24,8 +24,15 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        yum install --assumeyes postfix >> /tmp/install.log 2>&1
-        show_result $?
+        if [ $VERSION == "7" ]
+        then
+            yum install --assumeyes postfix >> /tmp/install.log 2>&1
+            show_result $?
+        elif [ $VERSION == "8" ]
+        then
+            dnf install --assumeyes postfix >> /tmp/install.log 2>&1
+            show_result $?
+        fi
     fi
 }
 

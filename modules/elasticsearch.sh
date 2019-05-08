@@ -40,7 +40,7 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        rpm -ihv https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.2.1/elasticsearch-2.2.1.rpm >> /tmp/install.log 2>&1
+        rpm -ihv https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-x86_64.rpm >> /tmp/install.log 2>&1
         show_result $?
     fi
 }

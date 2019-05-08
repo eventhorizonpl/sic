@@ -40,6 +40,10 @@ function install_package()
         then
             yum install --assumeyes mariadb mariadb-libs mariadb-server mariadb-devel >> /tmp/install.log 2>&1
             show_result $?
+        elif [ $VERSION == "8" ]
+        then
+            dnf install --assumeyes mariadb mariadb-server mariadb-devel >> /tmp/install.log 2>&1
+            show_result $?
         fi
     fi
 }

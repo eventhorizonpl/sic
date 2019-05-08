@@ -46,9 +46,9 @@ function install_package()
             policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
             show_result $?
         elif [ $VERSION == "8" ]
+        then
             dnf install --assumeyes acl bzip2 git-core mc ntpdate patch \
             policycoreutils-python-utils tar vim wget >> /tmp/install.log 2>&1
-        then
         fi
     fi
 

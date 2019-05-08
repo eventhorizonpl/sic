@@ -34,15 +34,8 @@ function configure_package()
 function install_package()
 {
     show_message "Installing elasticsearch..."
-    if [ $OS == "fedora" ]
-    then
-        dnf install --assumeyes elasticsearch >> /tmp/install.log 2>&1
-        show_result $?
-    elif [ $OS == "rhel" ]
-    then
-        rpm -ihv https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-x86_64.rpm >> /tmp/install.log 2>&1
-        show_result $?
-    fi
+    rpm -ihv https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-x86_64.rpm >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 while [ $# -ne 0 ]

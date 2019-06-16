@@ -5,6 +5,14 @@ source ./lib
 function configure_package()
 {
     show_message "Configuring kubernetes..."
+
+    show_message "\tRestarting kubernetes..."
+    systemctl restart kubelet.service >> /tmp/install.log 2>&1
+    show_result $?
+
+    show_message "\tEnabling kubernetes..."
+    systemctl enable kubelet.service >> /tmp/install.log 2>&1
+    show_result $?
 }
 
 function install_package()

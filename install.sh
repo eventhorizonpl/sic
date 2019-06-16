@@ -78,6 +78,11 @@ then
     sh modules/kernel.sh "install"
 fi
 
+if [ $MODULE_KUBERNETES == "yes" ]
+then
+    sh modules/kubernetes.sh "install" "configure"
+fi
+
 if [ $MODULE_NGINX == "yes" ]
 then
     sh modules/nginx.sh "install" "configure"

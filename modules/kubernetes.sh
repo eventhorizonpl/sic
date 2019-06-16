@@ -4,23 +4,15 @@ source ./lib
 
 function configure_package()
 {
-    show_message "Configuring docker..."
-
-    show_message "\tRestarting docker..."
-    systemctl restart docker.service >> /tmp/install.log 2>&1
-    show_result $?
-
-    show_message "\tEnabling docker..."
-    systemctl enable docker.service >> /tmp/install.log 2>&1
-    show_result $?
+    show_message "Configuring kubernetes..."
 }
 
 function install_package()
 {
-    show_message "Installing docker..."
+    show_message "Installing kubernetes..."
     if [ $OS == "fedora" ]
     then
-        dnf install --assumeyes docker >> /tmp/install.log 2>&1
+        dnf install --assumeyes kubernetes >> /tmp/install.log 2>&1
         show_result $?
     elif [ $OS == "rhel" ]
     then

@@ -58,6 +58,11 @@ then
     sh modules/basic_tools.sh ./$CONFIG "install"
 fi
 
+if [ $MODULE_DOCKER == "yes" ]
+then
+    sh modules/docker.sh "install" "configure"
+fi
+
 if [ $MODULE_GOLANG == "yes" ]
 then
     sh modules/golang.sh "install" "configure"

@@ -31,7 +31,12 @@ function install_package()
         show_result $?
     elif [ $OS == "rhel" ]
     then
-        if [ $VERSION == "8" ]
+        if [ $VERSION == "7" ]
+        then
+            wget -qO- https://rpm.nodesource.com/setup_10.x | bash >> /tmp/install.log 2>&1
+            yum install --assumeyes nodejs yarn >> /tmp/install.log 2>&1
+            show_result $?
+        elif [ $VERSION == "8" ]
         then
             dnf install --assumeyes nodejs yarn >> /tmp/install.log 2>&1
             show_result $?

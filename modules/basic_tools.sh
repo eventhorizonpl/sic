@@ -44,12 +44,15 @@ function install_package()
         then
             yum install --assumeyes acl bzip2 git mc net-tools ntpdate patch \
             policycoreutils-python screen tar unzip vim wget >> /tmp/install.log 2>&1
-            show_result $?
+            yum install --assumeyes centos-release-scl
+            yum install --assumeyes rh-git218
         elif [ $VERSION == "8" ]
         then
             dnf install --assumeyes acl bzip2 git-core mc ntpdate patch \
             policycoreutils-python-utils tar vim wget >> /tmp/install.log 2>&1
+
         fi
+        show_result $?
     fi
 
     show_message "\tRestarting ntpdate..."

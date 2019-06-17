@@ -26,16 +26,12 @@ function install_package()
     then
         if [ $VERSION == "7" ]
         then
-            show_message "\tInstalling yum utils..."
-            yum install --assumeyes yum-utils device-mapper-persistent-data lvm2 >> /tmp/install.log 2>&1
+            show_message "\tCopying repo file..."
+            cp etc/repo/kubernetes.repo /etc/yum.repos.d/ >> /tmp/install.log 2>&1
             show_result $?
 
-            show_message "\tAdding docker repo..."
-            yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo >> /tmp/install.log 2>&1
-            show_result $?
-
-            show_message "\tInstalling docker package..."
-            yum install docker-ce docker-ce-cli containerd.io >> /tmp/install.log 2>&1
+            show_message "\tInstalling kubernetes package..."
+            yum install --assumeyes kubelet kubeadm kubectl >> /tmp/install.log 2>&1
             show_result $?
 #        elif [ $VERSION == "8" ]
 #        then

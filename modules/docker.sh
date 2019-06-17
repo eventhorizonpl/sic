@@ -35,7 +35,7 @@ function install_package()
             show_result $?
 
             show_message "\tInstalling docker package..."
-            yum install docker-ce docker-ce-cli containerd.io >> /tmp/install.log 2>&1
+            yum install --assumeyes docker-ce docker-ce-cli containerd.io >> /tmp/install.log 2>&1
             show_result $?
 #        elif [ $VERSION == "8" ]
 #        then

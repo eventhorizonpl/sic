@@ -17,9 +17,9 @@ function install_package()
             show_result $?
         elif [ $VERSION == "8" ]
         then
-#            show_message "Installing EPEL release package..."
-#            rpm -ihv https://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm >> /tmp/install.log 2>&1
-#            show_result $?
+            show_message "Installing EPEL release package..."
+            rpm -ihv https://dl.fedoraproject.org/pub/epel/8/Everything/x86_64/Packages/e/epel-release-8-5.el8.noarch.rpm >> /tmp/install.log 2>&1
+            show_result $?
 
             show_message "Installing REMI release package..."
             rpm -ihv https://rpms.remirepo.net/enterprise/remi-release-8.rpm >> /tmp/install.log 2>&1

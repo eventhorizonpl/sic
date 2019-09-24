@@ -48,20 +48,23 @@ function install_package()
             yum install --assumeyes rh-git218
         elif [ $VERSION == "8" ]
         then
-            dnf install --assumeyes acl bzip2 git-core mc ntpdate patch \
+            dnf install --assumeyes acl bzip2 git-core mc patch \
             policycoreutils-python-utils tar vim wget >> /tmp/install.log 2>&1
 
         fi
         show_result $?
     fi
 
-    show_message "\tRestarting ntpdate..."
-    systemctl restart ntpdate.service >> /tmp/install.log 2>&1
-    show_result $?
+    if [ $OS != "rhel" ] && [ $VERSION != "8" ]
+    then
+        show_message "\tRestarting ntpdate..."
+        systemctl restart ntpdate.service >> /tmp/install.log 2>&1
+        show_result $?
 
-    show_message "\tEnabling ntpdate..."
-    systemctl enable ntpdate.service >> /tmp/install.log 2>&1
-    show_result $?
+        show_message "\tEnabling ntpdate..."
+        systemctl enable ntpdate.service >> /tmp/install.log 2>&1
+        show_result $?
+    fi
 }
 
 while [ $# -ne 0 ]
